@@ -6,10 +6,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-        <Navbar/>
-        <Contact/>
-        <Contact/>
-        <Contact/>
+        <Navbar title= "Contacts list"/>
+        <Contact name="Achraf" email="test@est.fr" tel="1234"/>
+        <Contact name="Achraf2" email="test2@est.fr" tel="2234"/>
+        <Contact name="Achraf3" email="test3@est.fr" tel="3234"/>
     </div>
   );
 }
