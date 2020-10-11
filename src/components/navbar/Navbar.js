@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types'
+
 
 const Navbar = (props)  => {
     const { title } = props;
@@ -7,6 +9,10 @@ const Navbar = (props)  => {
             <h1>{ title }</h1>
         </div>
     )
+}
+
+Navbar.propTypes = {
+    title: PropTypes.string.isRequired 
 }
 
 export default Navbar;
