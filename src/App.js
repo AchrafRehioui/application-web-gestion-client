@@ -1,7 +1,9 @@
 import React from 'react';
+import './App.css';
 import Contact from './components/contacts/Contact';
 import Navbar from './components/navbar/Navbar';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css/';
 
 function App() {
   return (
