@@ -11,12 +11,21 @@ class Contacts extends Component {
             ]
     }
 
+    supprimerContact(id) {
+
+        const { contacts } = this.state;
+        const nouvelleListeContacts = contacts.filter((contact) => contact.id !== id)
+        this.setState({
+            contacts:nouvelleListeContacts
+        })
+    }
+
     render() {
         const { contacts } = this.state;
         return (
             <div>
                 {contacts.map((contact) => (
-                   <Contact data={contact} />
+                   <Contact key={contact.id} data={contact} supprimerContactdeChild = { this.supprimerContact.bind(this, contact.id)}/>
                 )
                 )}
             </div>
