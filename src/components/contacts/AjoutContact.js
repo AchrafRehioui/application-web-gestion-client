@@ -1,25 +1,45 @@
 import React, { Component } from 'react'
 import { Consumer } from '../context';
+import GroupeTextesInput from '../assistants/GroupeTextesInput';
 
 class AjoutContact extends Component {
 
     state = {
         name: '',
         email: '',
-        telephone: ''
+        telephone: '',
+        errors: {}
     }
 
     onChangeInput = (e) => this.setState({ [e.target.name]: e.target.value })
 
     submit = (dispatch, size, e) => {
         e.preventDefault();
+
+        const {name, email, telephone} = this.state;
+
+        if(name == ""){
+            this.setState({errors: {name: "Le nom est obligatoire!"}})
+            return;
+        }
+
+        if(email == ""){
+            this.setState({errors: {email: "L'email est obligatoire!"}})
+            return;
+        }
+
+        if(telephone == ""){
+            this.setState({errors: {telephone: "Le telephone est obligatoire!"}})
+            return;
+        }
+
         dispatch({
             type: "AJOUT_CONTACT",
             payload: {
                 id: size + 1,
                 name: this.state.name,
                 email: this.state.email,
-                tel: this.state.telephone
+                telephone: this.state.telephone
             }
         })
 
@@ -31,7 +51,7 @@ class AjoutContact extends Component {
     }
 
     render() {
-        const { name, email, telephone } = this.state;
+        const { name, email, telephone, errors } = this.state;
         return (
             <Consumer>
                 { value => {
@@ -43,33 +63,30 @@ class AjoutContact extends Component {
                                     <div className="card-body">
                                         <h4 className="card-title">Ajout Contact</h4>
                                         <div className="card-text">
-                                            <div className="form-group">
-                                                <label htmlFor="">Nom</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="name"
-                                                    defaultValue={name}
+                                            <GroupeTextesInput 
+                                                    label="Name" 
+                                                    type="text"
+                                                    name="name" 
+                                                    value={name}
                                                     onChange={this.onChangeInput}
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="">Email</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="email"
-                                                    defaultValue={email}
+                                                    error={errors.name}
+                                            />
+                                             <GroupeTextesInput 
+                                                    label="Email" 
+                                                    type="email"
+                                                    name="email" 
+                                                    value={email}
                                                     onChange={this.onChangeInput}
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <label htmlFor="">Telephone</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="telephone"
-                                                    defaultValue={telephone}
+                                                    error={errors.email}
+                                            />
+                                             <GroupeTextesInput 
+                                                    label="Telephone"
+                                                    type="text" 
+                                                    name="telephone" 
+                                                    value={telephone}
                                                     onChange={this.onChangeInput}
-                                                />
-                                            </div>
+                                                    error={errors.telephone}
+                                            />
                                             <button className="btn btn-success btn-block">Ajout un nouveau Contact</button>
                                         </div>
                                     </div>
