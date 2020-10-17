@@ -50,6 +50,8 @@ class AjoutContact extends Component {
             errors: {}
 
         })
+        /* Pour la redirection à la page liste des contacts */
+        this.props.history.push('/');
     }
 
     render() {

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css/';
 import 'font-awesome/css/font-awesome.min.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import About from './components/pages/About';
+import PageNotFound from './components/pages/PageNotFound';
 import './App.css';
 
 class App extends Component {
@@ -16,11 +17,12 @@ class App extends Component {
         <Provider>
           <Router>
           <div className="App">
-               <Navbar title= "Liste des contacts"/>
+              <Navbar title= "Liste des contacts"/>
               <Switch>
-              <Route  exact path="/" component={Contacts}/>
-              <Route  exact path="/contact/ajout" component={AjoutContact}/>
-              <Route  exact path="/about" component={About}/>
+                <Route  exact path="/" component={Contacts}/>
+                <Route  exact path="/contact/ajout" component={AjoutContact}/>
+                <Route  exact path="/about" component={About}/>
+                <Route  component={PageNotFound}/>
               </Switch>
             </div>
           </Router> 
