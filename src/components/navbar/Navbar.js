@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import './navbar.css'
+import PropTypes from 'prop-types';
+import './navbar.css';
 
 const Navbar = (props)  => {
     const { title } = props;

@@ -46,7 +46,9 @@ class AjoutContact extends Component {
         this.setState({
             name: '',
             email: '',
-            telephone: ''
+            telephone: '',
+            errors: {}
+
         })
     }
 
