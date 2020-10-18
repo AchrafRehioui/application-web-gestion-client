@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { Consumer } from '../context';
 import GroupeTextesInput from '../assistants/GroupeTextesInput';
+import axios from 'axios';
+
 
 class AjoutContact extends Component {
 
     state = {
         name: '',
         email: '',
-        telephone: '',
+        phone: '',
         errors: {}
     }
 
@@ -16,7 +18,7 @@ class AjoutContact extends Component {
     submit = (dispatch, size, e) => {
         e.preventDefault();
 
-        const {name, email, telephone} = this.state;
+        const {name, email, phone} = this.state;
 
         if(name == ""){
             this.setState({errors: {name: "Le nom est obligatoire!"}})
@@ -28,25 +30,29 @@ class AjoutContact extends Component {
             return;
         }
 
-        if(telephone == ""){
-            this.setState({errors: {telephone: "Le telephone est obligatoire!"}})
+        if(phone == ""){
+            this.setState({errors: {phone: "Le telephone est obligatoire!"}})
             return;
         }
 
-        dispatch({
-            type: "AJOUT_CONTACT",
-            payload: {
-                id: size + 1,
-                name: this.state.name,
-                email: this.state.email,
-                telephone: this.state.telephone
-            }
-        })
+        const nouveauContact = {
+            name,
+            email,
+            phone
+        }
+
+        axios.post('https://jsonplaceholder.typicode.com/users', nouveauContact)
+            .then(res =>  dispatch({
+                type: "AJOUT_CONTACT",
+                payload: res.data
+            }));
+
+       
 
         this.setState({
             name: '',
             email: '',
-            telephone: '',
+            phone: '',
             errors: {}
 
         })
@@ -55,7 +61,7 @@ class AjoutContact extends Component {
     }
 
     render() {
-        const { name, email, telephone, errors } = this.state;
+        const { name, email, phone, errors } = this.state;
         return (
             <Consumer>
                 { value => {
@@ -86,10 +92,10 @@ class AjoutContact extends Component {
                                              <GroupeTextesInput 
                                                     label="Telephone"
                                                     type="text" 
-                                                    name="telephone" 
-                                                    value={telephone}
+                                                    name="phone" 
+                                                    value={phone}
                                                     onChange={this.onChangeInput}
-                                                    error={errors.telephone}
+                                                    error={errors.phone}
                                             />
                                             <button className="btn btn-success btn-block">Ajout un nouveau Contact</button>
                                         </div>
