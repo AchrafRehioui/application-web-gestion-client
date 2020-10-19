@@ -17,15 +17,18 @@ class Contact extends Component {
         });
     }
 
-    onDeleteClick = (id, dispatch) => {
+    onDeleteClick = async (id, dispatch) => {
 
-        axios.delete('https://jsonplaceholder.typicode.com/users/'+id)
-            .then(dispatch({
-                type: 'SUPPRESSION_CONTACT',
-                payload: id
-            }))
-            .catch(err => console(err));
-
+        try {
+        const res = await axios.delete('https://jsonplaceholder.typicode.com/users/'+id)
+        dispatch({
+            type: 'SUPPRESSION_CONTACT',
+            payload: id
+        })
+        }
+        catch(e){
+            console.log(e)
+        }
         
     }
     render() {

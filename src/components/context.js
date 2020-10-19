@@ -30,13 +30,13 @@ export class Provider extends Component {
         dispatch: action => this.setState(state => reducer(state, action))
     }
 
-    componentWillMount() {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => this.setState({
-                contacts: res.data
-            }))
-            .catch(err => console.error(err));
+    async componentDidMount() {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/users')
             
+        this.setState({
+                contacts: res.data
+        })
+
     }
 
     render() {
