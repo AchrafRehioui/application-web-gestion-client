@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Contacts from './components/contacts/Contacts';
 import AjoutContact from './components/contacts/AjoutContact';
+import ModifierContact from './components/contacts/ModifierContact';
 import { Provider } from './components/context';  
 import Navbar from './components/navbar/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css/';
@@ -21,6 +22,7 @@ class App extends Component {
               <Switch>
                 <Route  exact path="/" component={Contacts}/>
                 <Route  exact path="/contact/ajout" component={AjoutContact}/>
+                <Route  exact path="/contact/modifier/:id" component={ModifierContact}/>
                 <Route  exact path="/about" component={About}/>
                 <Route  component={PageNotFound}/>
               </Switch>

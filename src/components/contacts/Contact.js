@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { Consumer } from '../context';
 import './contact.css'
@@ -45,9 +46,22 @@ class Contact extends Component {
                                 {name}
                                 <i style={{ cursor: 'pointer' }} onClick={this.showContact.bind(this, name)}
                                     className="fa fa-sort-down"></i>
+                                <Link to={`/contact/modifier/${id}`}>
+                                    <i className="fa fa-pencil" style={{
+                                        color: 'orange',
+                                        float: 'right',
+                                        cursor: 'pointer',
+                                        marginLeft: '8px'
+                                    }}>
+
+                                    </i>
+
+                                </Link>
+
                                 <i style={{ color: 'red', float: 'right', cursor: 'pointer' }} className="fa fa-times" aria-hidden="true"
                                     onClick={this.onDeleteClick.bind(this, id, dispatch)}
                                 ></i>
+
                             </h4>
                             <div className="card-text">
                                 {(this.state.showContactToggle) ? (
